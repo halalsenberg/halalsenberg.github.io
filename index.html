@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Server: Полное руководство от А до Я</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4655;
+            --bg: #0b0e11;
+            --card: #1c2128;
+            --text: #adbac7;
+            --highlight: #fcfcfc;
+            --success: #3fb950;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* Шапка с эффектом параллакса */
+        header {
+            background: linear-gradient(rgba(11, 14, 17, 0.8), rgba(11, 14, 17, 0.8)), 
+                        url('https://wallpapercave.com');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 { font-size: 4rem; color: var(--highlight); margin: 0; text-transform: uppercase; }
+        
+        .nav-box {
+            position: sticky;
+            top: 0;
+            background: var(--card);
+            padding: 15px;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .nav-box a { color: var(--text); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .nav-box a:hover { color: var(--primary); }
+
+        /* Карточки этапов */
+        .mega-step {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            border: 1px solid #30363d;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .mega-step h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .check-list li::before {
+            content: "✅";
+            margin-right: 10px;
+        }
+
+        /* Детальные скриншоты */
+        .screen-container {
+            margin: 30px 0;
+            border: 4px solid #2d333b;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .screen-container img { width: 100%; display: block; }
+
+        .screen-info {
+            background: #2d333b;
+            padding: 15px;
+            color: var(--highlight);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .path-box {
+            background: #000;
+            color: #3fb950;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin: 10px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .code-area {
+            background: #0d1117;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #e6edf3;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .cmd-line::before { content: "> "; color: var(--primary); }
+
+        .trouble-box {
+            background: rgba(255, 70, 85, 0.1);
+            border: 1px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid #30363d; margin-top: 100px; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>CS2 SERVER MASTER</h1>
+    <p style="color: var(--primary); font-weight: bold; letter-spacing: 5px;">DIRECTOR'S CUT EDITION</p>
+</header>
+
+<div class="nav-box">
+    <a href="#step1">1. Файлы</a>
+    <a href="#step2">2. SteamCMD</a>
+    <a href="#step3">3. Загрузка</a>
+    <a href="#step4">4. Порты</a>
+    <a href="#step5">5. Запуск</a>
+    <a href="#step6">6. Админка</a>
+</div>
+
+<div class="container">
+
+    <!-- ЭТАП 1 -->
+    <section id="step1" class="mega-step">
+        <h2>Шаг 1: Фундамент</h2>
+        <p>Перед началом убедитесь, что на диске есть <b>50 ГБ свободного места</b> (желательно SSD). Сервер CS2 очень чувствителен к скорости диска.</p>
+        
+        <div class="path-box">Локация: Мой компьютер > Диск C:</div>
+        
+        <ul class="check-list">
+            <li>Создайте папку <b>CS2_Server</b> в корне диска C.</li>
+            <li>Внутри неё создайте подпапку <b>SteamCMD_Tool</b>.</li>
+            <li>Внутри неё создайте подпапку <b>Server_Files</b>.</li>
+        </ul>
+
+        <div class="screen-container">
+            <img src="https://placeholder.com" alt="Folders">
+            <div class="screen-info">Должно получиться так: C:\CS2_Server\SteamCMD_Tool и C:\CS2_Server\Server_Files</div>
+        </div>
+    </section>
+
+    <!-- ЭТАП 2 -->
+    <section id="step2" class="mega-step">
+        <h2>Шаг 2: Укрощение SteamCMD</h2>
+        <p>SteamCMD — это консольная версия Steam. Она скачивает сервер напрямую с серверов Valve.</p>
+        
+        <ol>
+            <li>Скачайте <a href="https://akamaihd.net" style="color:var(--primary)">steamcmd.zip</a>.</li>
+            <li>Распакуйте ОДИН файл <code>steamcmd.exe</code> в папку <code>SteamCMD_Tool</code>.</li>
+            <li>Запустите его двойным кликом.</li>
+        </ol>
+
+        <div class="screen-container">
+            <img src="https://placeholder.com" alt="SteamCMD Start">
+            <div class="screen-info">Подождите, пока утилита скачает свои файлы. В конце появится надпись Steam></div>
+        </div>
+    </section>
+
+    <!-- ЭТАП 3 -->
+    <section id="step3" class="mega-step">
+        <h2>Шаг 3: Глубокая загрузка</h2>
+        <p>Теперь мы заставим SteamCMD скачать файлы самой игры. Вводите команды именно в таком порядке:</p>
+
+        <div class="code-area">
+            <div class="cmd-line">login anonymous</div>
+            <div class="cmd-line">force_install_dir C:\CS2_Server\Server_Files</div>
+            <div class="cmd-line">app_update 740 validate</div>
+        </div>
+
+        <div class="warning" style="color: var(--primary);">
+            <b>⚠️ ВНИМАНИЕ:</b> Если загрузка прервалась (Error), просто введите <code>app_update 740 validate</code> еще раз. Это нормально.
+        </div>
+
+        <div class="screen-container">
+            <img src="https://placeholder.com" alt="Files done">
+            <div class="screen-info">Проверьте папку Server_Files. Там должна появиться папка 'game'.</div>
+        </div>
+    </section>
+
+    <!-- ЭТАП 4 -->
+    <section id="step4" class="mega-step">
+        <h2>Шаг 4: Сетевой шлюз (Порты)</h2>
+        <p>Это самый сложный этап. Если его пропустить, друзья не смогут зайти на сервер.</p>
+        
+        <div class="path-box">Путь: Панель управления > Брандмауэр > Доп. параметры > Правила для входящих</div>
+        
+        <p>Создайте <b>Правило для порта</b>:</p>
+        <ul class="check-list">
+            <li>Протокол: <b>UDP</b></li>
+            <li>Порт: <b>27015, 27016, 27020</b></li>
+            <li>Действие: <b>Разрешить подключение</b></li>
+            <li>Имя: <b>CS2_Server_Access</b></li>
+        </ul>
+
+        <div class="screen-container">
+            <img src="https://placeholder.com" alt="Firewall">
+            <div class="screen-info">Обязательно выберите UDP, так как игровые данные ходят через него.</div>
+        </div>
+    </section>
+
+    <!-- ЭТАП 5 -->
+    <section id="step5" class="mega-step">
+        <h2>Шаг 5: Первый запуск</h2>
+        <p>Запуск сервера производится через специальный файл-сценарий.</p>
+        
+        <div class="path-box">Путь: C:\CS2_Server\Server_Files\game\bin\win64</div>
+        
+        <ol>
+            <li>В этой папке создайте текстовый файл <code>run.txt</code>.</li>
+            <li>Вставьте в него: <code>cs2.exe -dedicated -console +map de_inferno +servercfgfile server.cfg</code>.</li>
+            <li>Переименуйте файл из <code>run.txt</code> в <b>run.bat</b>.</li>
+            <li>Запустите его.</li>
+        </ol>
+
+        <div class="code-area">
+            // Если консоль сервера открылась и в конце написано "GC Connection Established" — сервер работает!
+        </div>
+    </section>
+
+    <!-- ЭТАП 6 -->
+    <section id="step6" class="mega-step">
+        <h2>Шаг 6: Управление (RCON)</h2>
+        <p>Как менять карты и кикать игроков прямо из игры?</p>
+        
+        <div class="path-box">Файл: ...\game\csgo\cfg\server.cfg</div>
+        
+        <p>Добавьте в этот файл строку: <code>rcon_password "ваш_пароль"</code>.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr style="border-bottom: 1px solid var(--primary);">
+                <th style="text-align: left; padding: 10px;">Команда в игре</th>
+                <th style="text-align: left; padding: 10px;">Действие</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">rcon changelevel de_mirage</td>
+                <td style="padding: 10px;">Сменить карту на Mirage</td>
+            </tr>
+            <tr>
